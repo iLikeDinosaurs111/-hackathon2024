@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Quiz with Embedded Iframe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        #iframeContainer {
+            margin-top: 20px;
+            display: none; /* Initially hide the iframe */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./quizzes.html">Quizzes  (you are here)</a></li>
+                <li><a target="_blank" href="https://www.roblox.com/games/95376731037124/RELEASE-Backrooms-Math">Play the game!</a></li>
+            </ul>
+        </nav>
+    </header
+    <nav>
+        <ul>
+            <li><a href="#fifthgrade">5th grade quiz</a></li>
+            <li><a href="#sixthgrade">6th grade quiz</a></li>
+            <li><a href="#seventhgrade">7th grade quiz</a></li>
+        </ul>
+    </nav>
+    <br>
+    <div>
+        <h1 id="fifthgrade">5th Grade Quiz</h1>
+        <form id="quizForm">
+            <div>
+                <p>1. What is the area of a square with a side length of 12?</p>
+                <label>
+                    <input type="radio" name="q1" value="Hyper Text Markup Language"> Hyper Text Markup Language
+                </label><br>
+                <label>
+                    <input type="radio" name="q1" value="Hyperlinks and Text Markup Language"> Hyperlinks and Text Markup Language
+                </label><br>
+                <label>
+                    <input type="radio" name="q1" value="Hyper Text Marketing Language"> Hyper Text Marketing Language
+                </label><br>
+            </div>
+
+            <div>
+                <p>2. Which language is used for styling web pages?</p>
+                <label>
+                    <input type="radio" name="q2" value="HTML"> HTML
+                </label><br>
+                <label>
+                    <input type="radio" name="q2" value="CSS"> CSS
+                </label><br>
+                <label>
+                    <input type="radio" name="q2" value="JavaScript"> JavaScript
+                </label><br>
+            </div>
+
+            <div>
+                <p>3. Which is a JavaScript framework?</p>
+                <label>
+                    <input type="radio" name="q3" value="React"> React
+                </label><br>
+                <label>
+                    <input type="radio" name="q3" value="Django"> Django
+                </label><br>
+                <label>
+                    <input type="radio" name="q3" value="Ruby on Rails"> Ruby on Rails
+                </label><br>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div id="result"></div>
+    <div id="iframeContainer">
+        <h2>Enjoy this Scratch Project!</h2>
+        <iframe src="https://scratch.mit.edu/projects/639555105/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+    </div>
+
+    <script>
+        const form = document.getElementById('quizForm');
+        const resultDiv = document.getElementById('result');
+        const iframeContainer = document.getElementById('iframeContainer');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent page reload
+
+            let score = 0;
+            const totalQuestions = 3;
+
+            // Correct answers
+            const answers = {
+                q1: 'Hyper Text Markup Language',
+                q2: 'CSS',
+                q3: 'React'
+            };
+
+            // Check answers
+            for (let question in answers) {
+                const selectedAnswer = form[question].value;
+                if (selectedAnswer === answers[question]) {
+                    score++;
+                }
+            }
+
+            // Display result
+            resultDiv.textContent = `You scored ${score} out of ${totalQuestions}.`;
+
+            // Show iframe if all questions are correct
+            if (score === totalQuestions) {
+                iframeContainer.style.display = 'block'; // Show the iframe
+            } else {
+                iframeContainer.style.display = 'none'; // Hide the iframe
+            }
+        });
+    </script>
+</body>
+</html>
